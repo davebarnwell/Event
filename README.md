@@ -1,7 +1,7 @@
 # Event
 
-PHP Event supports two kinds of event handlers, Observer (Observable) & Mediator, both are about watching a subject,
-but differ whether the event is triggered at an an instance (Observable) or global level (Mediator).
+PHP Event supports two kinds of event handlers, Observer (**Observable**) & **Mediator**, both are about watching a subject,
+Object but differ whether the event is triggered at an an instance (Observable) or global level (Mediator).
 
 - **Mediator**: when you want to have a central event handler, event names are application wide, so it's good to use
   dotted event names, eg. album.track.added when an event is updated (fired), if the subject that updates the event
