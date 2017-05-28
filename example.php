@@ -1,16 +1,4 @@
-# Event
-
-PHP Event Mediator
-
-
-## usage
-
-Example that shows using an anonymous function and a class method as event listeners, and
-passing a couple of parameters to the listener. Listeners can be any callable.
-
-```php
-/* You Need to autoload or include class directly before using it */
-
+<?php
 use davebarnwell\Event\Mediator;
 
 Mediator::addListener(
@@ -40,8 +28,3 @@ $someClass->addListeners();
 
 
 Mediator::trigger('my.event.name', ['Hello', 'World']);
-
-/*
-
-*/
-```
