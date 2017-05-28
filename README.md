@@ -1,10 +1,12 @@
 # Event
 
-PHP Event supports two kinds of event handlers, Observer (**Observable**) & **Mediator**, both are about watching a subject,
-Object but differ whether the event is triggered at an an instance (Observable) or global level (Mediator).
+PHP Event supports two kinds of event handlers, Observer (**Observable**) & **Mediator**, both are about watching a
+subject object but differ whether the event is updated (triggered) at an an instance [Observable](src/Observable.php)
+or global level [Mediator](src/Mediator.php). When an event is updated in either instance a variable number of arguments
+can be passed to the observers, it's up to you to define whats required.
 
 - **Mediator**: when you want to have a central event handler, event names are application wide, so it's good to use
-  dotted event names, eg. album.track.added when an event is updated (fired), if the subject that updates the event
+  dotted event names, eg. *album.track.added* when an event is updated (fired), if the subject that updates the event
   needs to be accessible by the observer, you can pass a reference to it in the args of the update call from the subject.
 - **Observer**: (Observable) when you want individual objects to own the events, this distributes events across class
   instances and can be harder to debug when there are a lot of class instances with different listeners attached, but it
