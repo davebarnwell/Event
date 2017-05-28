@@ -12,9 +12,9 @@ Object but differ whether the event is triggered at an an instance (Observable) 
   work for you first, as standard libs are always preferable, [SplObsever](http://php.net/manual/en/class.splobserver.php) / 
   [SplSubject](http://php.net/manual/en/class.splsubject.php) implement a different interface to these classes.
 
-I personally believe the Mediator pattern is the easiest to debug and work with and one object has visibility of all
-events, and when events always include as their first argument to Observers the subject object the use cases of the need
-for the Observer pattern is greatly reduced.
+I personally believe the Mediator pattern is the easiest to debug and work with because one object has visibility of all
+events, and when events always include as their first argument to Observers the subject object the use cases of the per
+instance Observer pattern is greatly reduced.
 
 ## Mediator usage:-
 
