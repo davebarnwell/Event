@@ -1,0 +1,17 @@
+{
+  "name": "davebarnwell/Event",
+  "description": "Event handling",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Dave Barnwell",
+      "email": "dave.barnwell@freshsauce.co.uk"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "davebarnwell\\Event\\": "src/"
+    }
+  }
+}

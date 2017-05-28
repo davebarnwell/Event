@@ -1,24 +1,26 @@
 <?php
+require 'vendor/autoload.php';
+
 use davebarnwell\Event\Mediator;
 
 Mediator::addListener(
     'my.event.name',
     function ($p1, $p2) {
-        echo 'Anonymous func', $p1, $p2, PHP_EOL;
+        echo 'Anonymous func ', $p1, ' ', $p2, PHP_EOL;
     });
 
 class SomeClass
 {
-    public function someLisenter($p1, $p2)
+    public function myListener($p1, $p2)
     {
-        echo 'class method', $p1, $p2, PHP_EOL;
+        echo 'class method ', $p1, ' ', $p2, PHP_EOL;
     }
 
     public function addListeners()
     {
         Mediator::addListener(
             'my.event.name',
-            array($this, 'myEventNameListener')
+            array($this, 'myListener')
         );
     }
 }

@@ -26,7 +26,7 @@ class Mediator
      * trigger all listeners for the specified event, any previous stop on
      * this events propagation is cleared before the registered listeners are called.
      *
-     * @param string git init$eventName
+     * @param string $eventName
      * @param array  $args
      */
     public static function trigger(string $eventName, $args = array())
