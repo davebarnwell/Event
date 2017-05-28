@@ -3,7 +3,8 @@
 PHP Event supports two kinds of event handlers, Observer (**Observable**) & **Mediator**, both are about watching a
 subject object but differ whether the event is updated (triggered) at an an instance [Observable](src/Observable.php)
 or global level [Mediator](src/Mediator.php). When an event is updated in either instance a variable number of arguments
-can be passed to the observers, it's up to you to define whats required.
+can be passed to the observers, it's up to you to define whats required, but can include a reference to the subject
+object for instance which can be very useful.
 
 - **Mediator**: when you want to have a central event handler, event names are application wide, so it's good to use
   dotted event names, eg. *album.track.added* when an event is updated (fired), if the subject that updates the event
