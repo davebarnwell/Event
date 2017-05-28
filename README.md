@@ -25,7 +25,7 @@ cases of the per instance Observer pattern are greatly reduced.
 passing a couple of parameters to the listener. Listeners can be any callable.
 
 ```php
-/* You Need to autoload or include class directly before using it */
+/* You Need to autoload or include the class directly before using it */
 
 use davebarnwell\Event\Mediator;
 
@@ -75,7 +75,7 @@ class method Hello World
 passing a couple of parameters to the listener. Listeners can be any callable.
 
 ```php
-/* You Need to autoload or include class directly before using it */
+/* You Need to autoload or include the class directly before using it */
 
 use davebarnwell\Event\Observable;
 
