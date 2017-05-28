@@ -1,17 +1,20 @@
 # Event
 
-PHP Event supports two kinds of event handlers currently
+PHP Event supports two kinds of event handlers, Observer (Observable) & Mediator, both are about watching a subject,
+but differ whether the event is triggered at an an instance (Observable) or global level (Mediator).
 
-- Mediator: when you want to have a central event handler, event names are application wide, so it's good to use
-  dotted event names, eg. album.track.added when an event is fired, if the object that fires the event
-  needs to be accessible by the listener, you can pass a reference to it in the args of the notifier.
-  I personally believe the Mediator pattern is the easiest to debug and work with.
-- Observer: (Observable) when you want individual objects to own the events, this distributes events across class instances and can be
-  harder to debug when there are a lot of class instances with different listeners attached, but it can gives huge flexibility.
-  Do checkout the PHP Spl implementation of [SplObsever](http://php.net/manual/en/class.splobserver.php) &
-  [SplSubject](http://php.net/manual/en/class.splsubject.php) which implements a different instance interface, which
-  may do all you want if you want instance specific events.
+- **Mediator**: when you want to have a central event handler, event names are application wide, so it's good to use
+  dotted event names, eg. album.track.added when an event is updated (fired), if the subject that updates the event
+  needs to be accessible by the observer, you can pass a reference to it in the args of the update call from the subject.
+- **Observer**: (Observable) when you want individual objects to own the events, this distributes events across class
+  instances and can be harder to debug when there are a lot of class instances with different listeners attached, but it
+  can give huge flexibility when used wisely. If you need instance based Observers please also check if PHP Spl might
+  work for you first, as standard libs are always preferable, [SplObsever](http://php.net/manual/en/class.splobserver.php) / 
+  [SplSubject](http://php.net/manual/en/class.splsubject.php) implement a different interface to these classes.
 
+I personally believe the Mediator pattern is the easiest to debug and work with and one object has visibility of all
+events, and when events always include as their first argument to Observers the subject object the use cases of the need
+for the Observer pattern is greatly reduced.
 
 ## Mediator usage:-
 
