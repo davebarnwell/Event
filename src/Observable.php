@@ -29,7 +29,7 @@ abstract class Observable
      * @param string $eventName
      * @param array  $args
      */
-    public function updateEvent(string $eventName, $args = array())
+    public function updateEventObservers(string $eventName, $args = array())
     {
         if (isset($this->eventListeners[$eventName])) {
             self::allowEventPropagation($eventName);
@@ -101,7 +101,7 @@ abstract class Observable
      * @param string   $eventName
      * @param callable $listener
      */
-    public function attachEvent(string $eventName, callable $listener)
+    public function attachEventObserver(string $eventName, callable $listener)
     {
         $this->eventListeners[$eventName][] = $listener;
     }
@@ -112,7 +112,7 @@ abstract class Observable
      *
      * @return bool
      */
-    public function detachEvent(string $eventName, callable $listenerToRemove): bool
+    public function detachEventObserver(string $eventName, callable $listenerToRemove): bool
     {
         if (isset($this->eventListeners[$eventName])) {
             $key = array_search($listenerToRemove,$this->eventListeners[$eventName], true);
@@ -129,7 +129,7 @@ abstract class Observable
      *
      * @return bool
      */
-    public function detachAllObservers(string $eventName): bool
+    public function detachAllEventObservers(string $eventName): bool
     {
         if (isset($this->eventListeners[$eventName])) {
             $this->eventListeners[$eventName] = [];

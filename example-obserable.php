@@ -14,22 +14,22 @@ class SomeClass extends Observable
 
 # Create the class and
 $someClass = new SomeClass();
-# Add a class method as a listener
-$someClass->attachEvent(
+# Add a class method as an observer
+$someClass->attachEventObserver(
     'event_name',
     array($someClass, 'myListener')
 );
 
-# Add an anonymous function as a listener
-$someClass->attachEvent(
+# Add an anonymous function as an observer
+$someClass->attachEventObserver(
     'event_name',
     function ($p1, $p2) {
         echo 'Anonymous func ', $p1, ' ', $p2, PHP_EOL;
     }
 );
 
-# trigger the listeners
-$someClass->updateEvent(
+# notify the observers
+$someClass->updateEventObservers(
     'event_name',
     ['Hello', 'World']
 );

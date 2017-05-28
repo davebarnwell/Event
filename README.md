@@ -23,8 +23,8 @@ passing a couple of parameters to the listener. Listeners can be any callable.
 
 use davebarnwell\Event\Mediator;
 
-# Add an anonymous function as a listener
-Mediator::addListener(
+# Add an anonymous function as an observer
+Mediator::attachEventObserver(
     'my.event.name',
     function ($p1, $p2) {
         echo 'Anonymous func ', $p1, ' ', $p2, PHP_EOL;
@@ -36,20 +36,20 @@ class SomeClass
 {
     public function myListener($p1, $p2)
     {
-        echo 'class method ', $p1, ' ', $p2, PHP_EOL;
+        echo 'Class Method ', $p1, ' ', $p2, PHP_EOL;
     }
 }
 
 # Create the class and
 $someClass = new SomeClass();
-# Add a class method as a listener
-Mediator::addListener(
+# Add a class method as an observer
+Mediator::attachEventObserver(
     'my.event.name',
     array($someClass, 'myListener')
 );
 
-# trigger the listeners
-Mediator::trigger(
+# notify the observers
+Mediator::updateEventObservers(
     'my.event.name',
     ['Hello', 'World']
 );
@@ -84,22 +84,22 @@ class SomeClass extends Observable
 
 # Create the class and
 $someClass = new SomeClass();
-# Add a class method as a listener
-$someClass->attachEvent(
+# Add a class method as an observer
+$someClass->attachEventObserver(
     'event_name',
     array($someClass, 'myListener')
 );
 
-# Add an anonymous function as a listener
-$someClass->attachEvent(
+# Add an anonymous function as an observer
+$someClass->attachEventObserver(
     'event_name',
     function ($p1, $p2) {
         echo 'Anonymous func ', $p1, ' ', $p2, PHP_EOL;
     }
 );
 
-# trigger the listeners
-$someClass->updateEvent(
+# notify the observers
+$someClass->updateEventObservers(
     'event_name',
     ['Hello', 'World']
 );

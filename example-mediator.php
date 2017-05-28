@@ -3,8 +3,8 @@ require 'vendor/autoload.php';
 
 use davebarnwell\Event\Mediator;
 
-# Add an anonymous function as a listener
-Mediator::attachEvent(
+# Add an anonymous function as an observer
+Mediator::attachEventObserver(
     'my.event.name',
     function ($p1, $p2) {
         echo 'Anonymous func ', $p1, ' ', $p2, PHP_EOL;
@@ -22,14 +22,14 @@ class SomeClass
 
 # Create the class and
 $someClass = new SomeClass();
-# Add a class method as a listener
-Mediator::attachEvent(
+# Add a class method as an observer
+Mediator::attachEventObserver(
     'my.event.name',
     array($someClass, 'myListener')
 );
 
-# trigger the listeners
-Mediator::updateEvent(
+# notify the observers
+Mediator::updateEventObservers(
     'my.event.name',
     ['Hello', 'World']
 );

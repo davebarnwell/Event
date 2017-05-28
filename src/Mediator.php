@@ -29,7 +29,7 @@ class Mediator
      * @param string $eventName
      * @param array  $args
      */
-    public static function updateEvent(string $eventName, $args = array())
+    public static function updateEventObservers(string $eventName, $args = array())
     {
         if (isset(self::$eventListeners[$eventName])) {
             self::allowEventPropagation($eventName);
@@ -101,7 +101,7 @@ class Mediator
      * @param string   $eventName
      * @param callable $listener
      */
-    public static function attachEvent(string $eventName, callable $listener)
+    public static function attachEventObserver(string $eventName, callable $listener)
     {
         self::$eventListeners[$eventName][] = $listener;
     }
@@ -112,7 +112,7 @@ class Mediator
      *
      * @return bool
      */
-    public static function detachEvent(string $eventName, callable $listenerToRemove): bool
+    public static function detachEventObserver(string $eventName, callable $listenerToRemove): bool
     {
         if (isset(self::$eventListeners[$eventName])) {
             $key = array_search($listenerToRemove,self::$eventListeners[$eventName], true);
@@ -129,7 +129,7 @@ class Mediator
      *
      * @return bool
      */
-    public static function detachAllObservers(string $eventName): bool
+    public static function detachAllEventObservers(string $eventName): bool
     {
         if (isset(self::$eventListeners[$eventName])) {
             self::$eventListeners[$eventName] = [];
