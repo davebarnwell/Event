@@ -21,8 +21,8 @@ cases of the per instance Observer pattern are greatly reduced.
 
 ## Mediator usage:-
 
-[Example](example-mediator.php) that shows using an anonymous function and a class method as event listeners, and
-passing a couple of parameters to the listener. Listeners can be any callable.
+[Example](example-mediator.php) that shows using an anonymous function and a class method as event observers, and
+passing a couple of parameters to the observer. Observers can be any callable.
 
 ```php
 /* You Need to autoload or include the class directly before using it */
@@ -71,8 +71,8 @@ class method Hello World
 
 ## Observable usage:-
 
-[Example](example-obserable.php) that shows using an anonymous function and a class method as event listeners, and
-passing a couple of parameters to the listener. Listeners can be any callable.
+[Example](example-obserable.php) that shows using an anonymous function and a class method as event observers, and
+passing a couple of parameters to the observer. Observers can be any callable.
 
 ```php
 /* You Need to autoload or include the class directly before using it */
