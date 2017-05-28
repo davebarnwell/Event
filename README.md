@@ -13,8 +13,8 @@ Object but differ whether the event is triggered at an an instance (Observable) 
   [SplSubject](http://php.net/manual/en/class.splsubject.php) implement a different interface to these classes.
 
 I personally believe the Mediator pattern is the easiest to debug and work with because one object has visibility of all
-events, and when events always include as their first argument to Observers the subject object the use cases of the per
-instance Observer pattern is greatly reduced.
+events in the system, and when events always include as their first argument to Observers the subject object the use
+cases of the per instance Observer pattern are greatly reduced.
 
 ## Mediator usage:-
 
