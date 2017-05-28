@@ -14,12 +14,12 @@ class Mediator
     /**
      * @var [string][]callable
      */
-    private static $events = [];
+    private static $eventListeners = [];
 
     /**
      * @var [string]bool
      */
-    private static $propagationStopped = [];
+    private static $eventPropagationStopped = [];
 
 
     /**
@@ -29,13 +29,13 @@ class Mediator
      * @param string $eventName
      * @param array  $args
      */
-    public static function trigger(string $eventName, $args = array())
+    public static function updateEvent(string $eventName, $args = array())
     {
-        if (isset(self::$events[$eventName])) {
-            self::clearStopPropagation($eventName);
-            foreach (self::$events[$eventName] as $listener) {
+        if (isset(self::$eventListeners[$eventName])) {
+            self::allowEventPropagation($eventName);
+            foreach (self::$eventListeners[$eventName] as $listener) {
                 call_user_func_array($listener, $args);
-                if (self::isPropagationStopped($eventName)) {
+                if (self::isEventPropagationStopped($eventName)) {
                     break;
                 }
             }
@@ -49,11 +49,11 @@ class Mediator
      *
      * @return array
      */
-    public static function countAllListeners(): array
+    public static function countAllObservers(): array
     {
         $registeredEvents = [];
-        foreach (self::$events as $eventName) {
-            $registeredEvents[$eventName] = count(self::$events[$eventName]);
+        foreach (self::$eventListeners as $eventName) {
+            $registeredEvents[$eventName] = count(self::$eventListeners[$eventName]);
         }
         return $registeredEvents;
     }
@@ -63,9 +63,9 @@ class Mediator
      *
      * @return int
      */
-    public static function countListeners(string $eventName): int
+    public static function countObservers(string $eventName): int
     {
-        return isset(self::$events[$eventName]) ? count(self::$events[$eventName]) : 0;
+        return isset(self::$eventListeners[$eventName]) ? count(self::$eventListeners[$eventName]) : 0;
     }
 
     /**
@@ -74,9 +74,9 @@ class Mediator
      *
      * @param string $eventName
      */
-    public static function stopPropagation(string $eventName)
+    public static function stopEventPropagation(string $eventName)
     {
-        self::$propagationStopped[$eventName] = true;
+        self::$eventPropagationStopped[$eventName] = true;
     }
 
     /**
@@ -84,26 +84,26 @@ class Mediator
      *
      * @return bool
      */
-    public static function isPropagationStopped(string $eventName): bool
+    public static function isEventPropagationStopped(string $eventName): bool
     {
-        return isset(self::$propagationStopped[$eventName]) ? self::$propagationStopped[$eventName] : false;
+        return isset(self::$eventPropagationStopped[$eventName]) ? self::$eventPropagationStopped[$eventName] : false;
     }
 
     /**
      * @param string $eventName
      */
-    public static function clearStopPropagation(string $eventName)
+    public static function allowEventPropagation(string $eventName)
     {
-        self::$propagationStopped[$eventName] = false;
+        self::$eventPropagationStopped[$eventName] = false;
     }
 
     /**
      * @param string   $eventName
      * @param callable $listener
      */
-    public static function addListener(string $eventName, callable $listener)
+    public static function attachEvent(string $eventName, callable $listener)
     {
-        self::$events[$eventName][] = $listener;
+        self::$eventListeners[$eventName][] = $listener;
     }
 
     /**
@@ -112,14 +112,13 @@ class Mediator
      *
      * @return bool
      */
-    public static function removeListener(string $eventName, callable $listenerToRemove): bool
+    public static function detachEvent(string $eventName, callable $listenerToRemove): bool
     {
-        if (isset(self::$events[$eventName])) {
-            foreach (self::$events[$eventName] as $i => $listener) {
-                if ($listener == $listenerToRemove) {
-                    array_splice(self::$events, $i, 1);
-                    return true;
-                }
+        if (isset(self::$eventListeners[$eventName])) {
+            $key = array_search($listenerToRemove,self::$eventListeners[$eventName], true);
+            if($key){
+                unset(self::$eventListeners[$eventName][$key]);
+                return true;
             }
         }
         return false;
@@ -130,10 +129,10 @@ class Mediator
      *
      * @return bool
      */
-    public static function removeAllListeners(string $eventName): bool
+    public static function detachAllObservers(string $eventName): bool
     {
-        if (isset(self::$events[$eventName])) {
-            self::$events[$eventName] = [];
+        if (isset(self::$eventListeners[$eventName])) {
+            self::$eventListeners[$eventName] = [];
             return true;
         }
         return false;
