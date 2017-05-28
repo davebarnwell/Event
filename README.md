@@ -13,7 +13,7 @@ object for instance which can be very useful.
   instances and can be harder to debug when there are a lot of class instances with different listeners attached, but it
   can give huge flexibility when used wisely. If you need instance based Observers please also check if PHP Spl might
   work for you first, as standard libs are always preferable, [SplObsever](http://php.net/manual/en/class.splobserver.php) / 
-  [SplSubject](http://php.net/manual/en/class.splsubject.php) implement a different interface to Observable.
+  [SplSubject](http://php.net/manual/en/class.splsubject.php) implement a different but similar interface to Observable.
 
 I personally believe the Mediator pattern is the easiest to debug and work with because one object has visibility of all
 events in the system, and when events always include as their first argument to Observers the subject object the use
